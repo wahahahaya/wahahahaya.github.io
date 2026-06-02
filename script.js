@@ -165,10 +165,10 @@ class Cell {
 function createCells() {
   const b = Math.min(W, H);
   return [
-    new Cell(0.16, 0.26, b * 0.128),  // upper-left, large
-    new Cell(0.52, 0.43, b * 0.094),  // center-left
+    new Cell(0.16, 0.16, b * 0.128),  // upper-left, large
+    new Cell(0.42, 0.33, b * 0.094),  // center-left
     new Cell(0.13, 0.65, b * 0.188),  // lower-left
-    new Cell(0.45, 0.80, b * 0.090),  // lower-center
+    new Cell(0.35, 0.90, b * 0.090),  // lower-center
   ];
 }
 
