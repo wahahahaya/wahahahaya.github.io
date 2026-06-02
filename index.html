@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tsao-Lun Chen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Bio layer: canvas-animated cells + EVs (left) -->
+  <div class="bio-layer" aria-hidden="true">
+    <canvas id="bio-canvas"></canvas>
+    <svg style="display:none" width="100%" height="100%" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- ══ CELL 1: Large eukaryotic cell (top-left) ══ -->
+      <g transform="rotate(10 140 215)">
+        <!-- Cell membrane + faint cortical layer -->
+        <ellipse cx="140" cy="215" rx="82" ry="92" stroke="#4ade80" stroke-width="1.3" fill="rgba(74,222,128,0.035)" opacity="0.28"/>
+        <ellipse cx="140" cy="215" rx="76" ry="86" stroke="#4ade80" stroke-width="0.4" opacity="0.10" fill="none"/>
+        <!-- Mitochondrion 1 (elongated, with cristae line) -->
+        <g transform="rotate(-35 175 178)">
+          <ellipse cx="175" cy="178" rx="18" ry="7" stroke="#4ade80" stroke-width="0.7" fill="rgba(74,222,128,0.08)" opacity="0.30"/>
+          <line x1="158" y1="178" x2="192" y2="178" stroke="#4ade80" stroke-width="0.4" opacity="0.18"/>
+        </g>
+        <!-- Mitochondrion 2 -->
+        <g transform="rotate(20 100 252)">
+          <ellipse cx="100" cy="252" rx="15" ry="6" stroke="#4ade80" stroke-width="0.7" fill="rgba(74,222,128,0.07)" opacity="0.26"/>
+          <line x1="86" y1="252" x2="114" y2="252" stroke="#4ade80" stroke-width="0.4" opacity="0.16"/>
+        </g>
+        <!-- Mitochondrion 3 -->
+        <g transform="rotate(-55 162 255)">
+          <ellipse cx="162" cy="255" rx="12" ry="5" stroke="#4ade80" stroke-width="0.6" fill="rgba(74,222,128,0.06)" opacity="0.22"/>
+        </g>
+        <!-- Endosomal vesicles in cytoplasm -->
+        <circle cx="88"  cy="188" r="5"  fill="rgba(74,222,128,0.18)" opacity="0.65"/>
+        <circle cx="88"  cy="188" r="7"  stroke="#4ade80" stroke-width="0.5" opacity="0.20" fill="none"/>
+        <circle cx="168" cy="238" r="4"  fill="rgba(74,222,128,0.14)" opacity="0.60"/>
+        <circle cx="113" cy="262" r="6"  fill="rgba(74,222,128,0.12)" opacity="0.55"/>
+        <circle cx="113" cy="262" r="8"  stroke="#4ade80" stroke-width="0.4" opacity="0.14" fill="none"/>
+        <circle cx="158" cy="178" r="3"  fill="rgba(74,222,128,0.20)" opacity="0.60"/>
+        <circle cx="95"  cy="218" r="4"  fill="rgba(74,222,128,0.10)" opacity="0.50"/>
+        <!-- Nuclear envelope (double membrane) -->
+        <ellipse cx="135" cy="212" rx="33" ry="37" stroke="#4ade80" stroke-width="0.9" fill="rgba(74,222,128,0.06)" opacity="0.32"/>
+        <ellipse cx="135" cy="212" rx="27" ry="30" stroke="#4ade80" stroke-width="0.5" fill="rgba(74,222,128,0.04)" opacity="0.20"/>
+        <!-- Nucleolus -->
+        <ellipse cx="131" cy="208" rx="11" ry="12" fill="rgba(74,222,128,0.22)" opacity="0.70"/>
+        <ellipse cx="131" cy="208" rx="6"  ry="6.5" fill="rgba(74,222,128,0.32)" opacity="0.60"/>
+      </g>
+
+      <!-- ══ CELL 2: Medium cell (center-left) ══ -->
+      <g transform="rotate(-12 330 488)">
+        <ellipse cx="330" cy="488" rx="65" ry="72" stroke="#4ade80" stroke-width="1.1" fill="rgba(74,222,128,0.030)" opacity="0.22"/>
+        <ellipse cx="330" cy="488" rx="59" ry="66" stroke="#4ade80" stroke-width="0.4" opacity="0.09" fill="none"/>
+        <!-- Mitochondria -->
+        <g transform="rotate(-20 358 458)">
+          <ellipse cx="358" cy="458" rx="14" ry="5.5" stroke="#4ade80" stroke-width="0.6" fill="rgba(74,222,128,0.07)" opacity="0.26"/>
+          <line x1="345" y1="458" x2="371" y2="458" stroke="#4ade80" stroke-width="0.4" opacity="0.16"/>
+        </g>
+        <g transform="rotate(30 300 516)">
+          <ellipse cx="300" cy="516" rx="12" ry="5" stroke="#4ade80" stroke-width="0.6" fill="rgba(74,222,128,0.06)" opacity="0.22"/>
+        </g>
+        <g transform="rotate(-40 352 520)">
+          <ellipse cx="352" cy="520" rx="10" ry="4.5" stroke="#4ade80" stroke-width="0.5" fill="rgba(74,222,128,0.05)" opacity="0.20"/>
+        </g>
+        <!-- Vesicles -->
+        <circle cx="292" cy="463" r="4"  fill="rgba(74,222,128,0.15)" opacity="0.60"/>
+        <circle cx="355" cy="498" r="3"  fill="rgba(74,222,128,0.12)" opacity="0.55"/>
+        <circle cx="308" cy="512" r="5"  fill="rgba(74,222,128,0.10)" opacity="0.50"/>
+        <circle cx="308" cy="512" r="7"  stroke="#4ade80" stroke-width="0.4" opacity="0.13" fill="none"/>
+        <circle cx="348" cy="465" r="3"  fill="rgba(74,222,128,0.14)" opacity="0.55"/>
+        <!-- Nucleus -->
+        <ellipse cx="327" cy="484" rx="27" ry="30" stroke="#4ade80" stroke-width="0.9" fill="rgba(74,222,128,0.05)" opacity="0.28"/>
+        <ellipse cx="327" cy="484" rx="21" ry="24" stroke="#4ade80" stroke-width="0.5" fill="rgba(74,222,128,0.03)" opacity="0.18"/>
+        <ellipse cx="324" cy="481" rx="9"  ry="10" fill="rgba(74,222,128,0.20)" opacity="0.65"/>
+        <ellipse cx="324" cy="481" rx="5"  ry="5.5" fill="rgba(74,222,128,0.28)" opacity="0.55"/>
+      </g>
+
+      <!-- ══ CELL 3: Small cell (lower-left, partly cropped) ══ -->
+      <g transform="rotate(6 82 678)">
+        <ellipse cx="82"  cy="678" rx="55" ry="60" stroke="#4ade80" stroke-width="1.0" fill="rgba(74,222,128,0.025)" opacity="0.18"/>
+        <g transform="rotate(15 112 650)">
+          <ellipse cx="112" cy="650" rx="13" ry="5" stroke="#4ade80" stroke-width="0.6" fill="rgba(74,222,128,0.06)" opacity="0.22"/>
+          <line x1="100" y1="650" x2="124" y2="650" stroke="#4ade80" stroke-width="0.4" opacity="0.14"/>
+        </g>
+        <circle cx="62"  cy="660" r="4" fill="rgba(74,222,128,0.12)" opacity="0.55"/>
+        <circle cx="105" cy="695" r="3" fill="rgba(74,222,128,0.10)" opacity="0.50"/>
+        <ellipse cx="80"  cy="674" rx="22" ry="25" stroke="#4ade80" stroke-width="0.8" fill="rgba(74,222,128,0.05)" opacity="0.24"/>
+        <ellipse cx="80"  cy="674" rx="17" ry="19" stroke="#4ade80" stroke-width="0.4" fill="rgba(74,222,128,0.03)" opacity="0.16"/>
+        <ellipse cx="78"  cy="671" rx="8"  ry="8.5" fill="rgba(74,222,128,0.18)" opacity="0.60"/>
+        <ellipse cx="78"  cy="671" rx="4"  ry="4.5" fill="rgba(74,222,128,0.26)" opacity="0.50"/>
+      </g>
+
+      <!-- ══ CELL 4: Background cell (upper-right of bio side) ══ -->
+      <g transform="rotate(-18 420 175)">
+        <ellipse cx="420" cy="175" rx="40" ry="44" stroke="#4ade80" stroke-width="0.8" fill="rgba(74,222,128,0.02)" opacity="0.14"/>
+        <ellipse cx="418" cy="172" rx="16" ry="18" stroke="#4ade80" stroke-width="0.6" fill="rgba(74,222,128,0.04)" opacity="0.18"/>
+        <ellipse cx="416" cy="170" rx="7"  ry="7.5" fill="rgba(74,222,128,0.14)" opacity="0.50"/>
+      </g>
+
+      <!-- ══ Extracellular Vesicles (EVs) — lipid bilayer appearance ══ -->
+      <circle cx="52"  cy="78"  r="6"  fill="rgba(74,222,128,0.20)" opacity="0.60"/>
+      <circle cx="52"  cy="78"  r="9"  stroke="#4ade80" stroke-width="0.7" opacity="0.22" fill="none"/>
+      <circle cx="198" cy="58"  r="5"  fill="rgba(74,222,128,0.22)" opacity="0.55"/>
+      <circle cx="198" cy="58"  r="8"  stroke="#4ade80" stroke-width="0.6" opacity="0.18" fill="none"/>
+      <circle cx="320" cy="115" r="8"  fill="rgba(74,222,128,0.16)" opacity="0.50"/>
+      <circle cx="320" cy="115" r="12" stroke="#4ade80" stroke-width="0.6" opacity="0.16" fill="none"/>
+      <circle cx="38"  cy="288" r="5"  fill="rgba(74,222,128,0.18)" opacity="0.55"/>
+      <circle cx="38"  cy="288" r="8"  stroke="#4ade80" stroke-width="0.5" opacity="0.18" fill="none"/>
+      <circle cx="192" cy="275" r="4"  fill="rgba(74,222,128,0.24)" opacity="0.55"/>
+      <circle cx="380" cy="298" r="7"  fill="rgba(74,222,128,0.16)" opacity="0.48"/>
+      <circle cx="380" cy="298" r="10" stroke="#4ade80" stroke-width="0.5" opacity="0.14" fill="none"/>
+      <circle cx="245" cy="360" r="5"  fill="rgba(74,222,128,0.18)" opacity="0.52"/>
+      <circle cx="245" cy="360" r="8"  stroke="#4ade80" stroke-width="0.5" opacity="0.16" fill="none"/>
+      <circle cx="55"  cy="390" r="4"  fill="rgba(74,222,128,0.20)" opacity="0.55"/>
+      <circle cx="420" cy="390" r="6"  fill="rgba(74,222,128,0.14)" opacity="0.48"/>
+      <circle cx="420" cy="390" r="9"  stroke="#4ade80" stroke-width="0.5" opacity="0.13" fill="none"/>
+      <circle cx="148" cy="510" r="6"  fill="rgba(74,222,128,0.18)" opacity="0.50"/>
+      <circle cx="148" cy="510" r="9"  stroke="#4ade80" stroke-width="0.5" opacity="0.15" fill="none"/>
+      <circle cx="355" cy="490" r="4"  fill="rgba(74,222,128,0.20)" opacity="0.55"/>
+      <circle cx="52"  cy="490" r="9"  fill="rgba(74,222,128,0.12)" opacity="0.45"/>
+      <circle cx="52"  cy="490" r="13" stroke="#4ade80" stroke-width="0.5" opacity="0.12" fill="none"/>
+      <circle cx="290" cy="595" r="5"  fill="rgba(74,222,128,0.18)" opacity="0.52"/>
+      <circle cx="290" cy="595" r="8"  stroke="#4ade80" stroke-width="0.5" opacity="0.15" fill="none"/>
+      <circle cx="175" cy="680" r="7"  fill="rgba(74,222,128,0.14)" opacity="0.48"/>
+      <circle cx="175" cy="680" r="10" stroke="#4ade80" stroke-width="0.5" opacity="0.13" fill="none"/>
+      <circle cx="435" cy="572" r="4"  fill="rgba(74,222,128,0.22)" opacity="0.55"/>
+      <circle cx="315" cy="800" r="6"  fill="rgba(74,222,128,0.16)" opacity="0.48"/>
+      <circle cx="315" cy="800" r="9"  stroke="#4ade80" stroke-width="0.5" opacity="0.13" fill="none"/>
+      <circle cx="102" cy="758" r="4"  fill="rgba(74,222,128,0.20)" opacity="0.52"/>
+      <circle cx="232" cy="775" r="8"  fill="rgba(74,222,128,0.12)" opacity="0.45"/>
+      <circle cx="232" cy="775" r="12" stroke="#4ade80" stroke-width="0.5" opacity="0.12" fill="none"/>
+      <!-- Tiny EVs (smallest subpopulation) -->
+      <circle cx="270" cy="148" r="3"  fill="#4ade80" opacity="0.30"/>
+      <circle cx="160" cy="330" r="3"  fill="#4ade80" opacity="0.28"/>
+      <circle cx="380" cy="420" r="3"  fill="#4ade80" opacity="0.26"/>
+      <circle cx="210" cy="570" r="3"  fill="#4ade80" opacity="0.28"/>
+      <circle cx="340" cy="640" r="3"  fill="#4ade80" opacity="0.26"/>
+      <circle cx="130" cy="730" r="3"  fill="#4ade80" opacity="0.24"/>
+      <circle cx="75"  cy="130" r="2.5" fill="#4ade80" opacity="0.32"/>
+      <circle cx="450" cy="460" r="2.5" fill="#4ade80" opacity="0.28"/>
+      <circle cx="185" cy="435" r="2.5" fill="#4ade80" opacity="0.30"/>
+      <circle cx="490" cy="280" r="2.5" fill="#4ade80" opacity="0.22"/>
+    </svg>
+  </div>
+
+  <!-- Tech layer: plexus particle canvas (right) -->
+  <div class="tech-layer" aria-hidden="true">
+    <canvas id="tech-canvas"></canvas>
+  </div>
+
+  <!-- Card -->
+  <main class="card" id="card">
+
+    <!-- Avatar -->
+    <div class="avatar-wrapper">
+      <!-- ✏️ 頭像準備好後，src 改為你的圖片路徑 -->
+      <img
+        class="avatar"
+        src="https://github.com/wahahahaya.png"
+        alt="Tsao-Lun Chen"
+        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23101020%22/%3E%3Ccircle cx=%2250%22 cy=%2238%22 r=%2219%22 fill=%22%23334155%22/%3E%3Cellipse cx=%2250%22 cy=%2282%22 rx=%2228%22 ry=%2219%22 fill=%22%23334155%22/%3E%3C/svg%3E'"
+      >
+    </div>
+
+    <!-- Name -->
+    <h1 class="name">Tsao-Lun Chen</h1>
+
+    <!-- Dual-identity divider -->
+    <div class="identity-bar" aria-label="Research domains">
+      <span class="dot dot-bio"  aria-hidden="true"></span>
+      <span class="bar-line bar-bio"  aria-hidden="true"></span>
+      <span class="bar-label">AI × Oral Biology</span>
+      <span class="bar-line bar-tech" aria-hidden="true"></span>
+      <span class="dot dot-tech" aria-hidden="true"></span>
+    </div>
+
+    <!-- Social links -->
+    <div class="links">
+      <a class="link-btn" href="https://github.com/wahahahaya" target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        GitHub
+      </a>
+
+      <a class="link-btn" href="https://www.linkedin.com/in/tsao-lun-chen-04b891157" target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        LinkedIn
+      </a>
+
+      <button class="link-btn email-btn" id="btn-ntu" data-email="R14450024@ntu.edu.tw">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        <span>NTU Mail</span>
+      </button>
+
+      <button class="link-btn email-btn" id="btn-gmail" data-email="a870128rlen@gmail.com">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+        <span>Gmail</span>
+      </button>
+
+      <a class="link-btn link-btn-resume" href="resume_v1.pdf" target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <line x1="10" y1="9" x2="8" y2="9"/>
+        </svg>
+        Resume / CV
+      </a>
+    </div>
+
+    <!-- Research tags -->
+    <div class="tags" aria-label="Research areas">
+      <span class="tag tag-tech">Semi-supervised Learning</span>
+      <span class="tag tag-tech">Dental AI</span>
+      <span class="tag tag-tech">Multimodal</span>
+      <span class="tag tag-bio">Stem Cells</span>
+      <span class="tag tag-bio">Extracellular Vesicles</span>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
