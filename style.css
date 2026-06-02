@@ -251,6 +251,20 @@ body {
 .tag-bio  { color: rgba(74,222,128,0.90); background: rgba(74,222,128,0.10); border: 1px solid rgba(74,222,128,0.24); }
 
 /* ─── Mobile ─────────────────────────────────────── */
+@media (max-width: 600px) {
+  /* Expand both layers to full screen so cells aren't hidden behind card */
+  .bio-layer {
+    width: 100%;
+    mask-image: linear-gradient(150deg, black 10%, rgba(0,0,0,0.45) 42%, transparent 72%);
+    -webkit-mask-image: linear-gradient(150deg, black 10%, rgba(0,0,0,0.45) 42%, transparent 72%);
+  }
+  .tech-layer {
+    width: 100%;
+    mask-image: linear-gradient(330deg, black 10%, rgba(0,0,0,0.45) 42%, transparent 72%);
+    -webkit-mask-image: linear-gradient(330deg, black 10%, rgba(0,0,0,0.45) 42%, transparent 72%);
+  }
+}
+
 @media (max-width: 430px) {
   .card { padding: 34px 22px 28px; max-width: calc(100vw - 32px); }
   .name { font-size: 1.50rem; }
